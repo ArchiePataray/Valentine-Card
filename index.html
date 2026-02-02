@@ -45,7 +45,15 @@
         .playing { animation: rotate 8s linear infinite; }
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         
-        .controls-row { display: flex; justify-content: center; align-items: center; gap: 25px; margin: 15px 0; }
+        /* Progress Bar Styling */
+        .progress-container { width: 80%; margin: 10px auto; }
+        #progressBar {
+            width: 100%;
+            cursor: pointer;
+            accent-color: #f06292;
+        }
+
+        .controls-row { display: flex; justify-content: center; align-items: center; gap: 25px; margin: 10px 0; }
         .nav-btn { background: none; border: none; font-size: 30px; color: #f06292; cursor: pointer; }
         
         .play-btn {
@@ -124,7 +132,13 @@
             <h1 id="title" class="valentine-header" style="font-size: 32px; margin:0;">Kalapastangan</h1>
             <p id="artist" style="margin: 5px 0 0 0; color: #666; font-size: 14px;">Fitter Karma</p>
         </div>
+
         <div class="music-visual" id="record">💿</div>
+
+        <div class="progress-container">
+            <input type="range" id="progressBar" value="0" max="100">
+        </div>
+
         <div class="controls-row">
             <button class="nav-btn" onclick="changeSong(-1)">⏮</button>
             <div class="play-btn" onclick="togglePlay()">
@@ -149,12 +163,14 @@
     const playIcon = document.getElementById('playIcon');
     const record = document.getElementById('record');
     const status = document.getElementById('status');
+    const progressBar = document.getElementById('progressBar');
 
     function loadTrack(index) {
         const track = playlist[index];
         document.getElementById('title').innerText = track.title;
         document.getElementById('artist').innerText = track.artist;
         audio.src = track.src;
+        progressBar.value = 0;
         resetVisuals();
     }
 
@@ -172,6 +188,20 @@
             status.innerText = "Paused";
         }
     }
+
+    // Update progress bar as song plays
+    audio.addEventListener('timeupdate', () => {
+        if (audio.duration) {
+            const progress = (audio.currentTime / audio.duration) * 100;
+            progressBar.value = progress;
+        }
+    });
+
+    // Seek song when slider is moved
+    progressBar.addEventListener('input', () => {
+        const seekTime = (progressBar.value / 100) * audio.duration;
+        audio.currentTime = seekTime;
+    });
 
     function resetVisuals() {
         playIcon.className = "play-triangle";
