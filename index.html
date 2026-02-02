@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Valentine Card</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: 'Poppins', sans-serif; overflow: hidden; background: #ff9a9e; }
+        
+        .page {
+            position: fixed; width: 100%; height: 100dvh; top: 0; left: 0;
+            display: flex; justify-content: center; align-items: center; padding: 15px;
+            transition: opacity 0.5s ease; background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        }
+        .hidden { opacity: 0; pointer-events: none; transform: scale(1.02); }
+
+        .container-box {
+            background: rgba(255, 255, 255, 0.96);
+            padding: 30px 20px; border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            width: 100%; max-width: 500px; text-align: center;
+            display: flex; flex-direction: column; max-height: 85dvh;
+        }
+
+        .valentine-header { 
+            font-family: 'Great Vibes', cursive; 
+            color: #d63384; 
+            margin: 0 0 10px 0; 
+            font-size: clamp(38px, 8vw, 52px); 
+        }
+
+        .selection-container { display: flex; flex-direction: column; gap: 12px; margin-top: 15px; }
+        .option-card {
+            background: white; border: 2px solid #ffebee; border-radius: 20px;
+            padding: 15px; cursor: pointer; display: flex; align-items: center;
+            gap: 15px; transition: 0.3s;
+        }
+        .option-card:hover { border-color: #f06292; transform: translateX(8px); }
+        .option-card h3 { margin: 0; font-size: 14px; color: #d63384; text-align: left; flex: 1; line-height: 1.3; }
+        .visual-icon { font-size: 35px; }
+
+        .music-visual { font-size: 80px; margin: 15px 0; display: inline-block; }
+        .playing { animation: rotate 8s linear infinite; }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        
+        .controls-row { display: flex; justify-content: center; align-items: center; gap: 25px; margin: 15px 0; }
+        .nav-btn { background: none; border: none; font-size: 30px; color: #f06292; cursor: pointer; }
+        
+        .play-btn {
+            width: 65px; height: 65px; background: #f06292; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center; cursor: pointer;
+            box-shadow: 0 5px 15px rgba(240, 98, 146, 0.3);
+        }
+        .play-triangle { width: 0; height: 0; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-left: 20px solid white; margin-left: 5px; }
+        .pause-bars { width: 20px; height: 25px; display: flex; justify-content: space-between; }
+        .pause-bars div { width: 7px; height: 100%; background: white; }
+
+        .scroll-area { 
+            overflow-y: auto; padding: 10px 15px 10px 5px; text-align: left; 
+            font-size: 15px; line-height: 1.7; color: #444;
+        }
+        
+        .menu-btn { 
+            background: #90a4ae; color: white; border: none; padding: 12px 25px; 
+            border-radius: 50px; margin-top: 20px; cursor: pointer; font-weight: 600;
+        }
+
+        .heart { position: fixed; top: -10px; animation: fall linear infinite; color: rgba(255,255,255,0.6); pointer-events: none; z-index: 0; }
+        @keyframes fall { to { transform: translateY(110vh); } }
+    </style>
+</head>
+<body>
+
+<audio id="audioElement"></audio>
+
+<div class="page" id="frontPage">
+    <div class="container-box">
+        <h1 class="valentine-header">Happy Valentine's Day</h1>
+        <div class="selection-container">
+            <div class="option-card" onclick="showPage('messagePage')">
+                <span class="visual-icon">✉️</span>
+                <h3>A message for you</h3>
+                <span style="color: #f06292;">➔</span>
+            </div>
+            <div class="option-card" onclick="showPage('musicPage')">
+                <span class="visual-icon">🎵</span>
+                <h3>Music I dedicated that reminds me of you</h3>
+                <span style="color: #f06292;">➔</span>
+            </div>
+            <div class="option-card" onclick="showPage('giftPage')">
+                <span class="visual-icon">🎁</span>
+                <h3>A simple gift for you</h3>
+                <span style="color: #f06292;">➔</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page hidden" id="messagePage">
+    <div class="container-box">
+        <h1 class="valentine-header" style="font-size: 32px;">For Diana</h1>
+        <div class="scroll-area">
+            <p>Hi Diana, I created this because you’re someone special to me. I know we haven’t talked in a while, but I just wanted to reach out today with honesty and respect. I still care about you, and I still appreciate what we shared, even if life took us in a different direction for now. What we had was meaningful to me, and it’s something I look back on with warmth, not regret.</p>
+            <p>I still remember how everything started. You were always so warm toward me, always smiling, and always making the effort to be your best whenever we crossed paths. I noticed it more than I ever said. Back then, my mindset was to avoid feelings because I thought love would distract me from my goals. But you were different. Your sincerity, your effort, and your presence slowly broke down the walls I tried to keep up.</p>
+            <p>I tried to fight my feelings at first. My mind told me to stay focused and keep my distance, but my heart kept pulling me closer to you. Even when I tried to create space, I couldn’t fully walk away, because being around you felt natural and right. Over time, you became someone I thought about often—someone who mattered to me more than I planned or expected. And when I finally admitted my feelings, it came from a place that was honest and real.</p>
+            <p>I’ve been doing a lot of thinking, and my heart keeps coming back to you. If you’re open to it, I’d love for us to try again. This time, I want to court you the right way: no rushing, no pressure. Just genuine effort, patience, and growing together step by step.</p>
+            <p><strong>I really like you...</strong></p>
+            <p>For so many reasons, I realized I like your flaws, your imperfections, and the way they make you so perfectly you. I love your personality, your vibe, and how you light up everything around you. Your style is effortless, and your smile... it just makes everything better.</p>
+            <p>I also understand that when things started to grow between us, life asked something different from both of us. I don’t know what the future holds, and I’m not trying to put any pressure on you. I just want you to know that my feelings came from a real place, and so does my respect for your space and your journey. I like you and I still care about you, but I will continue growing and living my life. If the future gives us another chance, that would be something really special. Your happiness matters more to me than anything else.</p>
+            <p>Whatever your decision is, I’ll take this time to work on myself physically, financially, and mentally, so that when the time is right, I can truly take care of you the way you deserve. But if life leads us in different directions, I’m still grateful because knowing you inspired me to grow. Wishing you happiness always.</p>
+            <p>I hope you’re doing well, finding success in your work, and taking care of yourself. You deserve happiness, peace of mind, and people around you who support your dreams.</p>
+            <p>No matter where life leads us, I’ll always wish you the best—today and always.</p>
+            <p style="text-align: right; font-weight: bold; font-family: 'Great Vibes', cursive; font-size: 28px; color:#d63384;">- Archie</p>
+        </div>
+        <button class="menu-btn" onclick="showPage('frontPage')">Back to Menu</button>
+    </div>
+</div>
+
+<div class="page hidden" id="musicPage" style="background: linear-gradient(135deg, #a1c4fd, #c2e9fb);">
+    <div class="container-box">
+        <div style="min-height: 80px;">
+            <h1 id="title" class="valentine-header" style="font-size: 32px; margin:0;">Kalapastangan</h1>
+            <p id="artist" style="margin: 5px 0 0 0; color: #666; font-size: 14px;">Fitter Karma</p>
+        </div>
+        <div class="music-visual" id="record">💿</div>
+        <div class="controls-row">
+            <button class="nav-btn" onclick="changeSong(-1)">⏮</button>
+            <div class="play-btn" onclick="togglePlay()">
+                <div id="playIcon" class="play-triangle"></div>
+            </div>
+            <button class="nav-btn" onclick="changeSong(1)">⏭</button>
+        </div>
+        <p id="status" style="font-size: 13px; color: #555; font-weight: 600;">Click Play to Listen</p>
+        <button class="menu-btn" onclick="goHome()">Back to Menu</button>
+    </div>
+</div>
+
+<div class="page hidden" id="giftPage">
+    <div class="container-box">
+        <h1 class="valentine-header">For You</h1>
+        <div style="font-size: 100px; margin: 20px;">🌹</div>
+        <p>A digital rose for you. I hope this brings a smile to your face today.</p>
+        <button class="menu-btn" onclick="showPage('frontPage')">Back to Menu</button>
+    </div>
+</div>
+
+<script>
+    const playlist = [
+        { title: "Statue", artist: "Lil Eddie", src: "statue.mp3" },
+        { title: "Kalapastangan", artist: "Fitter Karma", src: "kalapastangan.mp3" },
+        { title: "Old Love", artist: "Yuji & Putri Dahlia", src: "old_love.mp3" }
+    ];
+
+    let currentIndex = 1;
+    const audio = document.getElementById('audioElement');
+    const playIcon = document.getElementById('playIcon');
+    const record = document.getElementById('record');
+    const status = document.getElementById('status');
+
+    function loadTrack(index) {
+        const track = playlist[index];
+        document.getElementById('title').innerText = track.title;
+        document.getElementById('artist').innerText = track.artist;
+        audio.src = track.src;
+        resetVisuals();
+    }
+
+    function togglePlay() {
+        if (audio.paused) {
+            audio.play().then(() => {
+                playIcon.className = "pause-bars";
+                playIcon.innerHTML = "<div></div><div></div>";
+                record.classList.add('playing');
+                status.innerText = "Now Playing...";
+            }).catch(() => { status.innerText = "Audio file not found!"; });
+        } else {
+            audio.pause();
+            resetVisuals();
+            status.innerText = "Paused";
+        }
+    }
+
+    function resetVisuals() {
+        playIcon.className = "play-triangle";
+        playIcon.innerHTML = "";
+        record.classList.remove('playing');
+    }
+
+    function changeSong(dir) {
+        currentIndex = (currentIndex + dir + playlist.length) % playlist.length;
+        loadTrack(currentIndex);
+        togglePlay();
+    }
+
+    function showPage(id) {
+        document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+        document.getElementById(id).classList.remove('hidden');
+    }
+
+    function goHome() {
+        audio.pause();
+        showPage('frontPage');
+    }
+
+    for (let i = 0; i < 25; i++) {
+        const h = document.createElement('div');
+        h.className = 'heart'; h.innerText = '❤';
+        h.style.left = Math.random() * 100 + 'vw';
+        h.style.animationDuration = (Math.random() * 3 + 4) + 's';
+        document.body.appendChild(h);
+    }
+
+    loadTrack(currentIndex);
+</script>
+</body>
+</html>
